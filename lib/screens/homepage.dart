@@ -1,72 +1,86 @@
-// import 'package:flutter/material.dart';
-// import 'package:homepage/customewidgets/Headerwidget.dart';
-// import 'package:homepage/customewidgets/SectionWidget.dart';
-// import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
+import 'package:homepage/customewidgets/Headerwidget.dart';
+import 'package:homepage/customewidgets/SectionWidget.dart';
+import 'package:homepage/customewidgets/nearestStore.dart';
+import 'package:homepage/customewidgets/recomandedproduct.dart';
+import 'package:homepage/models/homepagemodels.dart';
 
-// void main() {
-//   runApp(
-//     ChangeNotifierProvider(
-//       create: (context) => HomePageProvider(),
-//       child: MyApp(),
-//     ),
-//   );
-// }
+class BackgroundScreen extends StatelessWidget {
+  const BackgroundScreen({super.key});
 
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: HomePage(),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    // Fetch temporary data
+    final stores = Store.getTemporaryData();
 
-// class HomePageProvider with ChangeNotifier {
-//   // Add your state management logic here
-// }
+    // Example product data for RecommendedProduct
+    final products = [
+      {'image': 'assets/images/product1.png'},
+      {'image': 'assets/images/product2.png'},
+      {'image': 'assets/images/product3.png'},
+    ];
 
-// class HomePage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: SafeArea(
-//         child: SingleChildScrollView(
-//           child: Column(
-//             children: [
-//               HeaderWidget(),
-//               firstSectionWidget(
-//                 // title: 'From your nearest stores',
-//                 items: List.generate(
-//                     4,
-//                     (index) =>
-//                         Placeholder(fallbackHeight: 100, fallbackWidth: 100)),
-//               ),
-//               firstSectionWidget(
-//                 // title: 'Recommended products',
-//                 items: List.generate(
-//                     6,
-//                     (index) =>
-//                         Placeholder(fallbackHeight: 100, fallbackWidth: 100)),
-//               ),
-//               firstSectionWidget(
-//                 // title: 'Last orders',
-//                 items: [
-//                   Container(
-//                     color: Colors.orange,
-//                     padding: EdgeInsets.all(8.0),
-//                     child: Row(
-//                       children: [
-//                         Icon(Icons.shopping_cart, color: Colors.white),
-//                         Text('15 items', style: TextStyle(color: Colors.white)),
-//                       ],
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.green,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              // Green Upper Part
+              Container(
+                height: MediaQuery.of(context).size.height *
+                    0.32, // 32% of screen height
+                color: Colors.green,
+                child: Column(
+                  children: [
+                    HeaderWidget(),
+                    firstSectionWidget(
+                      items: List.generate(
+                        5,
+                        (index) => Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          child: Container(
+                            height: 200,
+                            width: 350,
+                            decoration: BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // White Lower Part with Rounded Corners
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    // Pass the Neareststore widget directly
+                    Neareststore(
+                      title: 'From your nearest stores',
+                      stores: stores, // Pass the temporary data here
+                    ),
+                    // Display RecommendedProduct widget
+                    RecommendedProduct(
+                      title: 'Recommended Products',
+                      products: products, // Pass the product data here
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
