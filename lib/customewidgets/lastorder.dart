@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class RecommendedProduct extends StatelessWidget {
+class Lastorder extends StatelessWidget {
   final String title;
   final List<Map<String, String>> products; // Accept a list of product data
 
-  RecommendedProduct({required this.title, required this.products});
+  Lastorder({required this.title, required this.products});
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,7 @@ class RecommendedProduct extends StatelessWidget {
                       right: 8,
                       child: IconButton(
                         icon: Icon(
-                          Icons.add_box_sharp,
+                          Icons.add_box,
                           size: 30,
                         ),
                         onPressed: () {

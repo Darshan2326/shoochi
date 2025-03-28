@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:homepage/customewidgets/Headerwidget.dart';
 import 'package:homepage/customewidgets/SectionWidget.dart';
+import 'package:homepage/customewidgets/lastorder.dart';
 import 'package:homepage/customewidgets/nearestStore.dart';
 import 'package:homepage/customewidgets/recomandedproduct.dart';
 import 'package:homepage/models/homepagemodels.dart';
+import 'package:homepage/models/lastorderModel.dart';
+import 'package:homepage/models/recomandadProductModels.dart';
 
 class BackgroundScreen extends StatelessWidget {
   const BackgroundScreen({super.key});
@@ -12,13 +15,18 @@ class BackgroundScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // Fetch temporary data
     final stores = Store.getTemporaryData();
+    final products = RecommendedProductList.getProducts();
+    final lastorder = LastOrder.lastorderTempData();
+
+    // final lastorder = Lastorder.getTemporaryData();
 
     // Example product data for RecommendedProduct
-    final products = [
-      {'image': 'assets/images/product1.png'},
-      {'image': 'assets/images/product2.png'},
-      {'image': 'assets/images/product3.png'},
-    ];
+    // final products = [
+    //   {'image': 'assets/products/1.png'},
+    //   {'image': 'assets/products/2.png'},
+    //   {'image': 'assets/products/3.png'},
+    //   {'image': 'assets/products/4.png'},
+    // ];
 
     return SafeArea(
       child: Scaffold(
@@ -55,6 +63,11 @@ class BackgroundScreen extends StatelessWidget {
               ),
               // White Lower Part with Rounded Corners
               Container(
+                // height: MediaQuery.of(context).size.height *
+                //     0.68, // 68% of screen height
+
+                // height: double.infinity,
+                // width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -74,6 +87,10 @@ class BackgroundScreen extends StatelessWidget {
                       title: 'Recommended Products',
                       products: products, // Pass the product data here
                     ),
+                    Lastorder(
+                      title: "Last Order",
+                      products: lastorder,
+                    )
                   ],
                 ),
               ),
