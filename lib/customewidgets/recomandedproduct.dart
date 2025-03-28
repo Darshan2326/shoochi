@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 
 class RecommendedProduct extends StatelessWidget {
   final String title;
-  final List<Map<String, String>> products; // Accept a list of product data
+  final List<Map<String, String>> products;
+  final Function(Map<String, String>) onAddToCart;
 
-  RecommendedProduct({required this.title, required this.products});
+  RecommendedProduct({
+    required this.title,
+    required this.products,
+    required this.onAddToCart,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +42,6 @@ class RecommendedProduct extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Stack(
                   children: [
-                    // Product Image
                     Container(
                       height: 150,
                       width: 150,
@@ -49,39 +53,15 @@ class RecommendedProduct extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // Add to Cart Button
                     Positioned(
                       bottom: 8,
                       right: 8,
                       child: IconButton(
-                        icon: Icon(
-                          Icons.add_box_sharp,
-                          size: 30,
-                        ),
-                        onPressed: () {
-                          // Add your "Add to Cart" logic here
-                        },
+                        icon: Icon(Icons.add_box_sharp, size: 30),
+                        onPressed: () =>
+                            onAddToCart(product), // Pass product data
                         color: Colors.orange,
                       ),
-                      // child: ElevatedButton(
-                      //   onPressed: () {
-                      //     // Add your "Add to Cart" logic here
-                      //   },
-                      //   style: ElevatedButton.styleFrom(
-                      //     backgroundColor: Colors.orange,
-                      //     shape: RoundedRectangleBorder(
-                      //       borderRadius: BorderRadius.circular(10),
-                      //     ),
-                      //     padding: const EdgeInsets.symmetric(
-                      //       horizontal: 10,
-                      //       vertical: 5,
-                      //     ),
-                      //   ),
-                      //   child: Text(
-                      //     'Add to Cart',
-                      //     style: TextStyle(fontSize: 12),
-                      //   ),
-                      // ),
                     ),
                   ],
                 ),

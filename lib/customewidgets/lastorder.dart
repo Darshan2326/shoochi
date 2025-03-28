@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class Lastorder extends StatelessWidget {
   final String title;
   final List<Map<String, String>> products; // Accept a list of product data
+  final Function(Map<String, String>) onAddToCart;
 
-  Lastorder({required this.title, required this.products});
+  Lastorder({required this.title, required this.products, required this.onAddToCart});
 
   @override
   Widget build(BuildContext context) {
@@ -63,25 +64,6 @@ class Lastorder extends StatelessWidget {
                         },
                         color: Colors.orange,
                       ),
-                      // child: ElevatedButton(
-                      //   onPressed: () {
-                      //     // Add your "Add to Cart" logic here
-                      //   },
-                      //   style: ElevatedButton.styleFrom(
-                      //     backgroundColor: Colors.orange,
-                      //     shape: RoundedRectangleBorder(
-                      //       borderRadius: BorderRadius.circular(10),
-                      //     ),
-                      //     padding: const EdgeInsets.symmetric(
-                      //       horizontal: 10,
-                      //       vertical: 5,
-                      //     ),
-                      //   ),
-                      //   child: Text(
-                      //     'Add to Cart',
-                      //     style: TextStyle(fontSize: 12),
-                      //   ),
-                      // ),
                     ),
                   ],
                 ),

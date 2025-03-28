@@ -10,13 +10,24 @@ class HeaderWidget extends StatelessWidget {
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text('SOOOCHI', style: TextStyle(color: Colors.white, fontSize: 24)),
+          // Text('SOOOCHI', style: TsextStyle(color: Colors.white, fontSize: 24)),
+          // Spacer(),
+          Container(
+            height: 40,
+            width: 40,
+            padding: EdgeInsets.all(8.0),
+            decoration: BoxDecoration(
+              color: Colors.orange,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Center(child: Icon(Icons.person, color: Colors.white)),
+          ),
           Spacer(),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
             decoration: BoxDecoration(
               color: Colors.orange,
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(5),
             ),
             child: Row(
               children: [
@@ -34,7 +45,7 @@ class HeaderWidget extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 8.0),
               decoration: BoxDecoration(
                 color: Colors.blue[100],
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(5),
               ),
               child: Row(
                 children: [
@@ -59,7 +70,7 @@ class HeaderWidget extends StatelessWidget {
               color: Colors.orange,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Icon(Icons.person, color: Colors.white),
+            child: Icon(Icons.shopping_cart_sharp, color: Colors.white),
           ),
         ],
       ),
